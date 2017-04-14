@@ -14,9 +14,9 @@ app.service('ItemService', function ($window) {
     return generateId('comment_');
   }
 
-//let items= JSON.parse($window.localStorage.getItem('testingApp'));
+let items= JSON.parse($window.localStorage.getItem('testingApp'));
 
-  let items = [{
+  /*let items = [{
     id: generateItemId(),
     name: "First item with custom name",
     comments:
@@ -158,7 +158,7 @@ app.service('ItemService', function ($window) {
       content: "A variation of the ordinary lorem ipsum text has been used in typesetting since the 1960s or earlier, when it was popu-larized by advertisements for Letraset transfer sheets. It was introduced to the Information Age in the mid-1980s A varia-tion of the ordinary lorem ipsum text has been used in typesetting since the 1960s or earlier, when it was popular-ized by advertisements for Letraset transfer sheets. It was introduced to the Information Age in the mid-1980sA varia-tion of the ordinary lorem ipsum text has been used in typesetting since the 1960s or earlier, when it was popular-ized by advertisements for Letraset transfer sheets. It was introduced to the Information Age in the mid-1980s"
     },
   ]
-  }];
+}]; */
 
   const listeners = {
     change: []
@@ -252,11 +252,11 @@ app.controller("testingCtrl", function($scope, ItemService, $window) {
       $scope.items = ItemService.getItems();
 
       if (!$scope.currentItem) {
-        $scope.currentItem = $scope.items[0];
+        $scope.currentItem = $scope.items[0] || [];
       }
 
       if ($scope.currentItem) {
-        $scope.currentItemIndex = $scope.items.indexOf($scope.currentItem);
+        $scope.currentItemIndex = $scope.items.indexOf($scope.currentItem) || 0;
       }
     }
 
@@ -286,4 +286,9 @@ app.controller("testingCtrl", function($scope, ItemService, $window) {
 
       ItemService.removeItem(item);
     };
+
+    console.log($scope.items);
+    console.log($scope.currentItem);
+    console.log($scope.currentItemIndex);
+    console.log(JSON.parse($window.localStorage.getItem('testingApp')));
 });
