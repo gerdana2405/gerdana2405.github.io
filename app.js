@@ -101,6 +101,14 @@ app.service('ItemService', function ($window) {
     on(event, listener) {
       addListener(event, listener);
     },
+
+    searchItemByName(name) {
+       return items.find(function(element) {
+        if (element.name == name) {
+          return element.id;
+        }
+      })
+    },
   }
 });
 
@@ -124,7 +132,15 @@ app.controller("testingCtrl", function ($scope, ItemService) {
   render();
 
   $scope.addItem = function (event) {
-    ItemService.addNewItem($scope.itemName);
+
+    const searchItemByName = ItemService.searchItemByName($scope.itemName);
+
+    if (searchItemByName) {
+      $scope.currentItem = searchItemByName;
+    } else {
+      ItemService.addNewItem($scope.itemName);
+    }
+
     $scope.itemName = '';
   };
 
