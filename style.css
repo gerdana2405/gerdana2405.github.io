@@ -15,6 +15,7 @@ body{
   background-color: #2b2f3e;
   width: 21vw;
   min-width: 160px;
+  min-height: 100vh;
   flex: 1;
 }
 
