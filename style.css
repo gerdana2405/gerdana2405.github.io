@@ -24,36 +24,48 @@ body{
   body{
     display: block;
   }
+
   .left_thin_block{
     width: 100%;
+    position: relative;
+    min-height: 100px;
   }
+
   body>.right_wide_block{
     padding: 10px 5px;
     width: 100%;
     text-align: center;
+    margin-left: 0;
   }
+
   .right_wide_block>.items{
     min-height: 300px;
   }
+
   .items, .comments{
     text-align: center;
   }
+
   .items>.item_list{
     width:100%;
     height: 100px;
   }
+
   .items>.item_list>button{
     float: none;
     display: block;
     margin: 0 auto;
   }
+
   .items>.item_list>.active{
     height: 100px;
   }
+
   .right_wide_block>.comments{
     width: 88%;
     margin-left: 0;
   }
+  
   .comments textarea{
     width: 100% !important;
     margin-top: 10px;
