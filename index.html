@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body ng-app="testing" ng-controller="testingCtrl">
+
+  <div class="left_thin_block">
+    <a href="#"><h2>Main</h2></a>
+
+    <h3 class='tab'>Overview</h3>
+  </div>
+
+  <div class="right_wide_block">
+    <div class="items">
+      <h2>Items</h2>
+      <form ng-submit="addItem($event)">
+        <input type="text" name="itemname" placeholder="Type name here..." ng-model="itemName"/>
+        <button class="add_item" type="submit">Add new</button>
+      </form>
+      <a class="item_list" ng-repeat="item in items track by $index" ng-click="selectItem(item)" >
+        <div ng-class="{active:item.id==currentItem.id}"></div>
+        <h5>{{item.name}}</h5>
+        <span class="badge">{{item.comments.length}}</span>
+        <button ng-click="removeItem(item)">Delete</button>
+      </a>
+    </div>
+
+    <div class="comments">
+      <h2>Comments #{{currentItemIndex+1}}</h2>
+
+      <div class="comment_list" ng-repeat="comment in currentItem.comments track by $index">
+        <div class="comment_item" ng-class="{'last-item': $last}">
+          <div class="comment_img" ng-class-odd="'odd'" ng-class-even="'even'"></div>
+          <div class="comment_text">{{comment.content}}</div>
+        </div>
+      </div>
+
+      <div class="add_comment">
+      <div class="comment_img add"></div>
+      <form ng-submit="addComment($event)"  ng-keyup="$event.keyCode == 13 && addComment($event)">
+          <textarea rows="4" cols="40" ng-model="newComment"></textarea>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--Scripts-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
