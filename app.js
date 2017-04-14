@@ -249,7 +249,7 @@ app.controller("testingCtrl", function($scope, ItemService, $window) {
   $scope.commentsCount = {};
 
     var render = function () {
-      $scope.items = ItemService.getItems();
+      $scope.items = ItemService.getItems() || [];
 
       if (!$scope.currentItem) {
         $scope.currentItem = $scope.items[0] || [];
